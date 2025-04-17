@@ -15,14 +15,14 @@ import lombok.*;
 @AllArgsConstructor
 public class Accounts extends BaseEntity {
         @Column(name = "customer_id")
-        private String customerId;
+        private long customerId;
 
         @Column(name = "account_type")
         private String accountType;
 
         @Column(name = "account_number")
         @Id
-        private String accountNumber;
+        private long accountNumber;
 
         @Column(name = "branch_address")
         private String branchAddress;
