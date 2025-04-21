@@ -15,7 +15,7 @@ import lombok.*;
 @AllArgsConstructor
 public class Accounts extends BaseEntity {
         @Column(name = "customer_id")
-        private long customerId;
+        private Long customerId;
 
         @Column(name = "account_type")
         private String accountType;
