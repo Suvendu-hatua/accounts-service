@@ -11,10 +11,12 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @Tag(
@@ -24,6 +26,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping(path = "/api/v1/accounts")
 @Slf4j
+@Validated
 public class AccountsController {
 
     private IAccountService accountService;
@@ -61,7 +64,7 @@ public class AccountsController {
     )
 
     @PostMapping("/create")
-    public ResponseEntity<ResponseDto>createAccount(@RequestBody CustomerDto customerDto) {
+    public ResponseEntity<ResponseDto>createAccount(@Valid  @RequestBody CustomerDto customerDto) {
             accountService.createAccount(customerDto);
             log.info("Created account successfully.");
             return ResponseEntity.status(HttpStatus.CREATED).body(
