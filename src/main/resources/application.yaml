@@ -10,9 +10,9 @@ spring:
     version: v1
 #    Database Connection Configuration
   datasource:
-    url: jdbc:mysql://localhost:3306/${DATABASE_NAME:eazybank_microservices}
-    username: root
-    password: root
+    url: ${DB_URL:jdbc:mysql://localhost:3306/eazybank_microservices}
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:root}
     driver-class-name: com.mysql.cj.jdbc.Driver
   #    JPA Configuration
   jpa:
