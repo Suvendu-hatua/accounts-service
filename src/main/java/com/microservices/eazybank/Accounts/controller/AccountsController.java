@@ -1,6 +1,7 @@
 package com.microservices.eazybank.Accounts.controller;
 
 import com.microservices.eazybank.Accounts.constants.AccountsConstants;
+import com.microservices.eazybank.Accounts.dto.AccountsContactInfoDto;
 import com.microservices.eazybank.Accounts.dto.CustomerDto;
 import com.microservices.eazybank.Accounts.dto.ErrorResponseDto;
 import com.microservices.eazybank.Accounts.dto.ResponseDto;
@@ -14,6 +15,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -29,12 +31,18 @@ import org.springframework.web.bind.annotation.*;
 @Validated
 public class AccountsController {
 
-    private IAccountService accountService;
+    private final IAccountService accountService;
+
+    @Value("${build.version}")
+    private String buildVersion;
 
     @Autowired
     public AccountsController(IAccountService accountService) {
         this.accountService = accountService;
     }
+
+    @Autowired
+    private AccountsContactInfoDto accountsContactInfoDto;
 
     @Operation(
             summary = "Create Account REST API",
@@ -179,6 +187,61 @@ public class AccountsController {
             log.info("Deleted account failed.");
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseDto(AccountsConstants.STATUS_417,AccountsConstants.MESSAGE_417_DELETE));
         }
+    }
 
+    @Operation(
+            summary = "Fetch Build Version of  REST API",
+            description = "REST API to fetch current build version"
+    )
+    @ApiResponses(
+            {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "HTTP Status OK",
+                            content = @Content(
+                                    mediaType = "application/json"
+                            )
+                    ),
+                    @ApiResponse(
+                            responseCode = "500",
+                            description = "HTTP Status Internal Server Error",
+                            content = @Content(
+                                    mediaType = "application/json",
+                                    schema = @Schema(implementation = ErrorResponseDto.class)
+                            )
+                    )
+            }
+    )
+    @GetMapping("/build-info")
+    public ResponseEntity<String> getBuildInfo(){
+        return ResponseEntity.status(HttpStatus.OK).body("Build Version: "+buildVersion);
+    }
+    @Operation(
+            summary = "Fetch Accounts MS Contact Information",
+            description = "REST API to fetch accounts microservice contact information"
+    )
+    @ApiResponses(
+            {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "HTTP Status OK",
+                            content = @Content(
+                                    mediaType = "application/json",
+                                    schema = @Schema(implementation = AccountsContactInfoDto.class)
+                            )
+                    ),
+                    @ApiResponse(
+                            responseCode = "500",
+                            description = "HTTP Status Internal Server Error",
+                            content = @Content(
+                                    mediaType = "application/json",
+                                    schema = @Schema(implementation = ErrorResponseDto.class)
+                            )
+                    )
+            }
+    )
+    @GetMapping("/contact-info")
+    public ResponseEntity<AccountsContactInfoDto> getContactInfo(){
+        return ResponseEntity.status(HttpStatus.OK).body(accountsContactInfoDto);
     }
 }
