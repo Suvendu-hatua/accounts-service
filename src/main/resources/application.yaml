@@ -27,6 +27,13 @@ spring:
 
   profiles:
     active:
-      - "prod"
+      - "default"
+
+# Enabling all the endpoints of Spring boot actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
 
 
