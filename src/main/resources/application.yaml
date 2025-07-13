@@ -8,7 +8,7 @@ spring:
   application:
     name: "accounts"
     version: v1
-#    Database Connection Configuration
+  #    Database Connection Configuration
   datasource:
     url: ${DB_URL:jdbc:mysql://localhost:3306/eazybank_microservices}
     username: ${DB_USERNAME:root}

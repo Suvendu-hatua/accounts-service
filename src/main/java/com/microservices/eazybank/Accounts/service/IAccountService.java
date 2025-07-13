@@ -4,11 +4,11 @@ import com.microservices.eazybank.Accounts.dto.CustomerDto;
 
 public interface IAccountService {
 
-    void createAccount(CustomerDto customerDto);
+  void createAccount(CustomerDto customerDto);
 
-    CustomerDto fetchAccount(String mobileNumber);
+  CustomerDto fetchAccount(String mobileNumber);
 
-    boolean updateAccount(CustomerDto customerDto);
+  boolean updateAccount(CustomerDto customerDto);
 
-    boolean deleteAccount(String mobileNumber);
+  boolean deleteAccount(String mobileNumber);
 }
