@@ -4,6 +4,7 @@ import com.microservices.eazybank.Accounts.dto.CustomerDto;
 import com.microservices.eazybank.Accounts.entity.Customer;
 
 public class CustomerMapper {
+
   private CustomerMapper() {
   }
 
