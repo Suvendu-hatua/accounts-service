@@ -13,31 +13,31 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 @SpringBootApplication
 @OpenAPIDefinition(
-		info = @Info(
-				title = "Accounts Microservices Rest API Documentation",
-				description = "Banking: Accounts microservice REST API Documentation",
-				version = "v1",
-				contact = @Contact(
-						name = "Suvendu Hatua",
-						email = "iamsuvenduhatua@gmail.com",
-						url = "www.google.com"
-				),
-				license = @License(
-						name = "Apache 2.0",
-						url = "http://localhost:8080/swagger-ui/index.html"
-				)
-		),
-		externalDocs = @ExternalDocumentation(
-				description =  "Banking: Accounts microservice REST API Documentation",
-				url = "http://localhost:8080/swagger-ui/index.html"
-		)
+    info = @Info(
+        title = "Accounts Microservices Rest API Documentation",
+        description = "Banking: Accounts microservice REST API Documentation",
+        version = "v1",
+        contact = @Contact(
+            name = "Suvendu Hatua",
+            email = "iamsuvenduhatua@gmail.com",
+            url = "www.google.com"
+        ),
+        license = @License(
+            name = "Apache 2.0",
+            url = "http://localhost:8080/swagger-ui/index.html"
+        )
+    ),
+    externalDocs = @ExternalDocumentation(
+        description = "Banking: Accounts microservice REST API Documentation",
+        url = "http://localhost:8080/swagger-ui/index.html"
+    )
 )
 @EnableJpaAuditing(auditorAwareRef = "auditAwareImpl")
 @EnableConfigurationProperties(AccountsContactInfoDto.class)
 public class AccountsApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(AccountsApplication.class, args);
-	}
+  public static void main(String[] args) {
+    SpringApplication.run(AccountsApplication.class, args);
+  }
 
 }

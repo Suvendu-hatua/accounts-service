@@ -10,8 +10,8 @@ import java.util.Map;
 @ConfigurationProperties(prefix = "accounts")
 @Setter
 @Getter
-public class AccountsContactInfoDto{
-    private String message;
-    private Map<String,String> contactDetails;
-    private List<String> onCallSupport;
+public class AccountsContactInfoDto {
+  private String message;
+  private Map<String, String> contactDetails;
+  private List<String> onCallSupport;
 }
